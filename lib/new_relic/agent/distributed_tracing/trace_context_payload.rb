@@ -65,6 +65,7 @@ module NewRelic
           NewRelic::Agent.increment_metric(SUPPORTABILITY_PARSE_EXCEPTION)
           if error
             NewRelic::Agent.logger.warn("Error parsing trace context payload", error)
+            NewRelic::Agent.logger.warn("Error parsing trace context payload error: #{error}, message: #{error.message}, backtrace:\n#{error.backtrace.join("\n")}")
           elsif message
             NewRelic::Agent.logger.warn("Error parsing trace context payload: #{message}")
           end
